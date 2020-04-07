@@ -8,7 +8,7 @@ module.exports = function(app) {
 
     app.post('/api/notes', function(req, res) {
         var newNote = req.body;
-        notesArr.push(req.body);
+        notesArr.push(newNote);
         fs.writeFile(__dirname + '/db/db.json', JSON.stringify(notesArr), function(notesArr) {
             res.json(newNote);
         })
@@ -18,7 +18,7 @@ module.exports = function(app) {
     app.delete('/api/notes/:id', function(req, res) {
         var id = req.params.id;
         var note = notesArr[id];
-        var notesArr = notesArr.slice(parseInt(id), parseInt(id) + 1);
+        var notesArr = notesArr.slice(parseInt(id) + 1);
         fs.writeFile(__dirname + '/db/db.json', JSON.stringify(notesArr), function(notesArr) {
             if(err) throw err;
             res.json(note);
