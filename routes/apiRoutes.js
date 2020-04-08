@@ -1,5 +1,6 @@
 module.exports = function(app) {
 
+    const fs = require('fs');
     var notesArr = [];
 
     app.get('/api/notes', function(req, res) {
